@@ -1,0 +1,38 @@
+# Cấu hình sử dụng local registry
+image:
+  registry: localhost:5000
+  repository: prometheus/node-exporter
+  tag: v1.6.1
+  pullPolicy: IfNotPresent
+
+# Đối với kube-rbac-proxy, nếu được sử dụng
+kubeRBACProxy:
+  image:
+    registry: localhost:5000
+    repository: brancz/kube-rbac-proxy
+    tag: v0.19.1
+
+# Đảm bảo hostNetwork và hostPID được bật
+hostNetwork: true
+hostPID: true
+
+# Tắt service nếu không cần thiết
+service:
+  enabled: false
+
+# Đảm bảo RBAC được tạo
+rbac:
+  create: true
+
+# Tạo ServiceAccount
+serviceAccount:
+  create: true
+
+# Cấu hình resources
+resources:
+  limits:
+    cpu: 100m
+    memory: 128Mi
+  requests:
+    cpu: 50m
+    memory: 64Mi
